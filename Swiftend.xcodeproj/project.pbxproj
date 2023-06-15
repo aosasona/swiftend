@@ -13,6 +13,7 @@
 		E27574862A315FA200ED059F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E27574852A315FA200ED059F /* Preview Assets.xcassets */; };
 		E27574882A315FA200ED059F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27574872A315FA200ED059F /* Persistence.swift */; };
 		E275748B2A315FA200ED059F /* Swiftend.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E27574892A315FA200ED059F /* Swiftend.xcdatamodeld */; };
+		E27574942A32490700ED059F /* CalculatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E27574932A32490700ED059F /* CalculatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		E27574852A315FA200ED059F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E27574872A315FA200ED059F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E275748A2A315FA200ED059F /* Swiftend.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Swiftend.xcdatamodel; sourceTree = "<group>"; };
+		E27574932A32490700ED059F /* CalculatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				E27574872A315FA200ED059F /* Persistence.swift */,
 				E27574892A315FA200ED059F /* Swiftend.xcdatamodeld */,
 				E27574842A315FA200ED059F /* Preview Content */,
+				E27574932A32490700ED059F /* CalculatorView.swift */,
 			);
 			path = Swiftend;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E27574882A315FA200ED059F /* Persistence.swift in Sources */,
+				E27574942A32490700ED059F /* CalculatorView.swift in Sources */,
 				E275748B2A315FA200ED059F /* Swiftend.xcdatamodeld in Sources */,
 				E27574812A315FA000ED059F /* ContentView.swift in Sources */,
 				E275747F2A315FA000ED059F /* SwiftendApp.swift in Sources */,

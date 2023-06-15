@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  Swiftend
-//
-//  Created by Ayodeji Osasona on 08/06/2023.
-//
-
 import SwiftUI
 import CoreData
 
@@ -38,6 +31,7 @@ struct ContentView: View {
                     }
                 }
             }
+            .navigationTitle("Weekly explorations")
             Text("Select an item")
         }
     }
