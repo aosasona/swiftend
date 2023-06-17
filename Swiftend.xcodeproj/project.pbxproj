@@ -17,6 +17,7 @@
 		E2CACC992A3E2290009EB5E9 /* CalculatorButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CACC982A3E2290009EB5E9 /* CalculatorButtonView.swift */; };
 		E2CACC9B2A3E2753009EB5E9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CACC9A2A3E2753009EB5E9 /* Constants.swift */; };
 		E2CACC9D2A3E2BA6009EB5E9 /* CalculatorStateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CACC9C2A3E2BA6009EB5E9 /* CalculatorStateModel.swift */; };
+		E2CACCA02A3E4064009EB5E9 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CACC9F2A3E4064009EB5E9 /* Enums.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		E2CACC982A3E2290009EB5E9 /* CalculatorButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorButtonView.swift; sourceTree = "<group>"; };
 		E2CACC9A2A3E2753009EB5E9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E2CACC9C2A3E2BA6009EB5E9 /* CalculatorStateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorStateModel.swift; sourceTree = "<group>"; };
+		E2CACC9F2A3E4064009EB5E9 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				E2CACC982A3E2290009EB5E9 /* CalculatorButtonView.swift */,
 				E2CACC9A2A3E2753009EB5E9 /* Constants.swift */,
 				E2CACC9C2A3E2BA6009EB5E9 /* CalculatorStateModel.swift */,
+				E2CACC9F2A3E4064009EB5E9 /* Enums.swift */,
 			);
 			path = Calculator;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				E27574812A315FA000ED059F /* ContentView.swift in Sources */,
 				E2CACC9B2A3E2753009EB5E9 /* Constants.swift in Sources */,
 				E2CACC992A3E2290009EB5E9 /* CalculatorButtonView.swift in Sources */,
+				E2CACCA02A3E4064009EB5E9 /* Enums.swift in Sources */,
 				E275747F2A315FA000ED059F /* SwiftendApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

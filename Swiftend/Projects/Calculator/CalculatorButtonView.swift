@@ -2,19 +2,21 @@ import SwiftUI
 
 struct CalculatorButtonView: View {
     var button: CalculatorButton
+    var handler: (_ btn: CalculatorButton) -> Void
     @Binding var values: CalculatorState
     
     var body: some View {
         let colors = button.colors
         let size = getButtonSize()
+        let title = button == .clear ? values.current.isEmpty ? button.title : "C" : button.title
         
-        Button(button.title) { }
-        .buttonStyle(GridButtonStyle(
-            size: size,
-            isZero: button == .zero,
-            backgroundColor: colors.bg,
-            foregroundColor: colors.fg )
-        )
+        Button(title) { handler(button) }
+            .buttonStyle(GridButtonStyle(
+                size: size,
+                isZero: button == .digit(.zero),
+                backgroundColor: colors.bg,
+                foregroundColor: colors.fg )
+            )
     }
     
     private func getButtonSize() -> CGFloat {
@@ -52,9 +54,11 @@ struct CalculatorButtonView_Previews: PreviewProvider {
     struct Container: View {
         @State var val = CalculatorState.sample
         
+        func handler(btn: CalculatorButton) { return }
+        
         var body: some View {
             VStack {
-                CalculatorButtonView(button: CalculatorButton.equal, values: $val)
+                CalculatorButtonView(button: CalculatorButton.equal, handler: handler, values: $val)
             }
         }
     }

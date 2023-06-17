@@ -10,6 +10,7 @@ import Foundation
 struct CalculatorState {
     var current: String
     var previous: String
+    var operand: Operation?
 }
 
 extension CalculatorState {

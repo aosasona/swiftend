@@ -1,52 +1,108 @@
 import SwiftUI
 
-enum CalculatorButton: String {
-    case clear = "AC"
-    case plusMinus = "±"
-    case percent = "%"
-    case divide = "÷"
-    case multiply = "×"
-    case minus = "-"
-    case plus = "+"
-    case equal = "="
-    case decimal = "."
-    case zero = "0"
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
-    case nine = "9"
-    
-    var title: String { rawValue }
-    
-    var colors: (fg: Color, bg: Color) {
-        switch self {
-        case .clear, .plusMinus, .percent:
-            return (.black , Color(.systemGray4))
-        case .divide, .plus, .minus, .multiply, .equal:
-            return (.white , .orange)
-        default:
-            return (.white, Color(.darkGray))
-        }
-    }
-}
-
-
-
-
 struct CalculatorView: View {
     @State var values = CalculatorState(current: "", previous: "")
+    @State var lastOpWasEqual = false
+    
+    func setCurrent(_ value: CalculatorButton) {
+        if value.type != .number || values.current.count >= 8 { return }
+        if values.current.count == 0 && value == .digit(.zero) { return }
+        if lastOpWasEqual {
+            values.current = ""
+            lastOpWasEqual = false
+        }
+        values.current = values.current + value.title
+    }
+    
+    func setOperand(_ value: CalculatorButton) {
+        if value.type != .op { return }
+        var shouldReset = true
+        if !values.previous.isEmpty {
+            calculate()
+            shouldReset = false
+        }
+        values.operand = Operation(rawValue: value.title)
+        values.previous = values.current
+        if shouldReset {
+            values.current = ""
+        }
+    }
+    
+    func invertNumber() {
+        guard let fCurrent = Float(values.current) else { return }
+        if fCurrent > 0 {
+            values.current = "-\(values.current)"
+            return
+        }
+        values.current = String(values.current.dropFirst())
+    }
+    
+    func toPercent() {
+        guard let fCurrent = Float(values.current) else { return }
+        values.current = String(format:"%.2f", (fCurrent / 100.0))
+    }
+    
+    func calculate() {
+        guard let fCurrent = Float(values.current) else { return }
+        guard let fPrevious = Float(values.previous) else { return }
+        
+        values.previous = values.current
+        var result: Float = fCurrent
+        
+        switch values.operand {
+        case .plus:
+            result = fPrevious + fCurrent
+        case .minus:
+            result = fPrevious - fCurrent
+        case .divide:
+            result = fPrevious / fCurrent
+        case .multiply:
+            result = fPrevious * fCurrent
+        default:
+            return
+        }
+        
+        values.current = result.stringify
+        lastOpWasEqual = true
+    }
+    
+    func clear() {
+        if !values.current.isEmpty {
+            values.current = ""
+            return
+        }
+        
+        values.current = ""
+        values.previous = ""
+        values.operand = nil
+    }
+    
+    func handlePress(btn: CalculatorButton) {
+        switch btn {
+        case .decimal:
+            setCurrent(btn)
+        case .plusMinus:
+            invertNumber()
+        case .percent:
+            toPercent()
+        case .clear:
+            clear()
+        case .op:
+            setOperand(btn)
+        case .equal:
+            calculate()
+        default:
+            setCurrent(btn)
+            
+        }
+    }
     
     let buttons: [[CalculatorButton]] = [
-        [.clear, .plusMinus, .percent, .divide],
-        [.seven, .eight, .nine, .multiply],
-        [.four, .five, .six, .minus],
-        [.one, .two, .three, .plus],
-        [.zero, .decimal, .equal]
+        [.clear, .plusMinus, .percent, .op(.divide)],
+        [.digit(.seven), .digit(.eight), .digit(.nine), .op(.multiply)],
+        [.digit(.four), .digit(.five), .digit(.six), .op(.minus)],
+        [.digit(.one), .digit(.two), .digit(.three), .op(.plus)],
+        [.digit(.zero), .decimal, .equal]
     ]
     
     var body: some View {
@@ -66,7 +122,7 @@ struct CalculatorView: View {
                     ForEach(buttons, id: \.self) { row in
                         HStack(spacing: 12) {
                             ForEach (row, id: \.self) { button in
-                                CalculatorButtonView(button: button, values: $values)
+                                CalculatorButtonView(button: button,  handler: handlePress, values: $values)
                             }
                         }
                     }
@@ -78,13 +134,18 @@ struct CalculatorView: View {
         .background(Color.black.edgesIgnoringSafeArea(.all))
         
     }
-    
-    let makeRows: (Int, Int) -> [String] = { ($0...$1).map { "\($0)" }}
 }
 
 
 struct CalculatorView_Previews: PreviewProvider {
     static var previews: some View {
         CalculatorView()
+    }
+}
+
+
+extension Float {
+    var stringify: String {
+        return self.truncatingRemainder(dividingBy: 1) == 0 ? String(format: "%.0f", self) : String(format: "%.7f", self)
     }
 }
